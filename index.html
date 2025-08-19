@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skillyug Technology - Promotional Video</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e1e2e, #2d1b69, #1e1e2e);
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, rgba(138, 43, 226, 0.1), rgba(30, 30, 46, 0.9));
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .infinity-symbol {
+            width: 100%;
+            height: 60%;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .infinity-path {
+            stroke: url(#gradient);
+            stroke-width: 8;
+            fill: none;
+            stroke-linecap: round;
+            animation: draw 3s ease-in-out infinite;
+        }
+
+        @keyframes draw {
+            0%, 100% { stroke-dasharray: 0, 300; }
+            50% { stroke-dasharray: 150, 150; }
+        }
+
+        .company-name {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #6366f1, #ec4899, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.2em;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #ec4899;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .main-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: #a855f7;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            line-height: 1.4;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2rem 0;
+        }
+
+        .service-card {
+            background: rgba(99, 102, 241, 0.1);
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #ec4899;
+            box-shadow: 0 20px 40px rgba(236, 72, 153, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #ec4899;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-desc {
+            color: #a855f7;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .why-skillyug {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 900px;
+            margin: 2rem 0;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #6366f1;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-desc {
+            color: #a855f7;
+            font-size: 0.9rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 2rem 0;
+        }
+
+        .team-card {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: scale(1.05);
+            border-color: #ec4899;
+        }
+
+        .team-name {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-role {
+            color: #ec4899;
+            font-size: 0.9rem;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #6366f1, #ec4899);
+            color: white;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
+        }
+
+        .controls {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .control-btn {
+            background: rgba(99, 102, 241, 0.8);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .control-btn:hover {
+            background: rgba(236, 72, 153, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .progress-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #6366f1, #ec4899);
+            transition: width 0.3s ease;
+            z-index: 100;
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #6366f1;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            .services-grid, .why-skillyug, .team-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .main-title { font-size: 2.5rem; }
+            .subtitle { font-size: 1.4rem; }
+            .company-name { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <div class="particles" id="particles"></div>
+        
+        <!-- Slide 1: Logo & Company Intro -->
+        <div class="slide active" id="slide1">
+            <div class="logo">
+                <svg class="infinity-symbol" viewBox="0 0 200 100">
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#6366f1;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#ec4899;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path class="infinity-path" d="M50,50 C50,20 80,20 100,50 C120,80 150,80 150,50 C150,20 120,20 100,50 C80,80 50,80 50,50" />
+                </svg>
+            </div>
+            <h1 class="company-name">SKILLYUG</h1>
+            <p class="tagline">Technology</p>
+        </div>
+
+        <!-- Slide 2: Main Announcement -->
+        <div class="slide" id="slide2">
+            <h1 class="main-title">We're Now Onboarding Clients!</h1>
+            <p class="subtitle">End-to-end tech solutions helping businesses of all sizes grow and improve efficiency</p>
+        </div>
+
+        <!-- Slide 3: Services -->
+        <div class="slide" id="slide3">
+            <h1 class="main-title">Our Services</h1>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3 class="service-title">AI & Machine Learning</h3>
+                    <p class="service-desc">Make smarter, data-driven decisions</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3 class="service-title">Web & App Development</h3>
+                    <p class="service-desc">Build sleek, scalable digital experiences</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⛓️</div>
+                    <h3 class="service-title">Blockchain Analysis</h3>
+                    <p class="service-desc">Navigate the decentralized world</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📊</div>
+                    <h3 class="service-title">Data Analytics & Automation</h3>
+                    <p class="service-desc">Boost efficiency with insights</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Why Skillyug -->
+        <div class="slide" id="slide4">
+            <h1 class="main-title">Why Skillyug?</h1>
+            <div class="why-skillyug">
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Customized Solutions</h3>
+                    <p class="benefit-desc">We tailor services to your needs</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Affordable & Scalable</h3>
+                    <p class="benefit-desc">Our solutions grow with you</p>
+                </div>
+                <div class="benefit-card">
+                    <h3 class="benefit-title">Dedicated Experts</h3>
+                    <p class="benefit-desc">Our skilled team is committed to your success</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Team -->
+        <div class="slide" id="slide5">
+            <h1 class="main-title">Our Team</h1>
+            <div class="team-grid">
+                <div class="team-card">
+                    <h3 class="team-name">Vinayak Pandey</h3>
+                    <p class="team-role">CEO & Founder</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Omkar Pandey</h3>
+                    <p class="team-role">CFO</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Vibhanshu Mishra</h3>
+                    <p class="team-role">COO</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Yash Pandey</h3>
+                    <p class="team-role">CMO</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Aman Kumar</h3>
+                    <p class="team-role">CTO</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Aditi Mall</h3>
+                    <p class="team-role">Social Media Manager</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Ashish Dubey</h3>
+                    <p class="team-role">Chief Developer</p>
+                </div>
+                <div class="team-card">
+                    <h3 class="team-name">Amarachi Callista</h3>
+                    <p class="team-role">UI/UX Designer</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Call to Action -->
+        <div class="slide" id="slide6">
+            <h1 class="main-title">Ready to Transform Your Business?</h1>
+            <p class="subtitle">Join the future of technology with Skillyug</p>
+            <button class="cta-button">Get Started Today</button>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="prevSlide()">Previous</button>
+            <button class="control-btn" onclick="toggleAutoplay()" id="playBtn">Pause</button>
+            <button class="control-btn" onclick="nextSlide()">Next</button>
+        </div>
+
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let autoplayInterval;
+        let isAutoplay = true;
+
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (3 + Math.random() * 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateProgressBar();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        function updateProgressBar() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(() => {
+                nextSlide();
+            }, 4000);
+        }
+
+        function stopAutoplay() {
+            clearInterval(autoplayInterval);
+        }
+
+        function toggleAutoplay() {
+            const playBtn = document.getElementById('playBtn');
+            if (isAutoplay) {
+                stopAutoplay();
+                playBtn.textContent = 'Play';
+                isAutoplay = false;
+            } else {
+                startAutoplay();
+                playBtn.textContent = 'Pause';
+                isAutoplay = true;
+            }
+        }
+
+        // Initialize
+        createParticles();
+        updateProgressBar();
+        startAutoplay();
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === ' ') {
+                e.preventDefault();
+                toggleAutoplay();
+            }
+        });
+
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) prevSlide();
+        }
+    </script>
+</body>
+</html>
